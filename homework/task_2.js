@@ -19,7 +19,4 @@ let result2 = longest("ababcd");
 let result3 = longest("bbbb");
 let result4 = longest("bbbab");
 
-console.log(result1);
-console.log(result2);
-console.log(result3);
-console.log(result4);
+console.log({ result1, result2, result3, result4 });

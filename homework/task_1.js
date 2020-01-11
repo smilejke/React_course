@@ -31,7 +31,4 @@ let result2 = max([1, 2, 10, 1], 2);
 let result3 = max([1, 2, 3, 4], 7);
 let result4 = max([3, 7, 2, 9, 4], 15);
 
-console.log(result1);
-console.log(result2);
-console.log(result3);
-console.log(result4);
+console.log({ result1, result2, result3, result4 });
