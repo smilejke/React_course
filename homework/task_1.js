@@ -26,9 +26,9 @@ const max = (arr, current) => {
   return howMuchWeCanBuy(sort, sum);
 };
 
-let result1 = max([1, 2], 7);
-let result2 = max([1, 2, 10, 1], 2);
-let result3 = max([1, 2, 3, 4], 7);
-let result4 = max([3, 7, 2, 9, 4], 15);
+const result1 = max([1, 2], 7);
+const result2 = max([1, 2, 10, 1], 2);
+const result3 = max([1, 2, 3, 4], 7);
+const result4 = max([3, 7, 2, 9, 4], 15);
 
 console.log({ result1, result2, result3, result4 });

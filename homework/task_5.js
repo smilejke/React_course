@@ -32,9 +32,9 @@ const check = (arr, str) => {
   return verticalSearch || horizontalSearch;
 };
 
-let result1 = check(matrix, "FACE");
-let result2 = check(matrix, "CORN");
-let result3 = check(matrix, "AND");
-let result4 = check(matrix, "FONT");
+const result1 = check(matrix, "FACE");
+const result2 = check(matrix, "CORN");
+const result3 = check(matrix, "AND");
+const result4 = check(matrix, "FONT");
 
 console.log({ result1, result2, result3, result4 });

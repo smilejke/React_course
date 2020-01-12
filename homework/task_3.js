@@ -23,8 +23,8 @@ const longestPalindrome = str => {
   return longestPalindrome || null;
 };
 
-let result1 = longestPalindrome("babad");
-let result2 = longestPalindrome("cbbd");
-let result3 = longestPalindrome("dbabddb");
+const result1 = longestPalindrome("babad");
+const result2 = longestPalindrome("cbbd");
+const result3 = longestPalindrome("dbabddb");
 
 console.log({ result1, result2, result3 });

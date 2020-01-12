@@ -1,3 +1,12 @@
+// const longest = str => {
+//   const arr = str.split("");
+//   const uniqueArray = [...new Set(arr)];
+//   const uniqueString = uniqueArray.join("");
+//   return uniqueString;
+// };
+
+//======================== Не думаю, что такое решение Вас устроило бы, поэтому ниже расписан более подробный вариант
+
 const longest = str => {
   const arr = str.split("");
 
@@ -14,9 +23,9 @@ const longest = str => {
   return fn(arr);
 };
 
-let result1 = longest("abcabcbb");
-let result2 = longest("ababcd");
-let result3 = longest("bbbb");
-let result4 = longest("bbbab");
+const result1 = longest("abcabcbb");
+const result2 = longest("ababcd");
+const result3 = longest("bbbb");
+const result4 = longest("bbbab");
 
 console.log({ result1, result2, result3, result4 });
