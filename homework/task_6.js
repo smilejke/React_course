@@ -12,26 +12,27 @@ const missed = arr => {
   };
 
   let fullOrder = creteFullOrder(sorted);
+  //====================================== первый вариант
 
-  const missingValue = [...new Set(fullOrder)].filter(
-    item => !sorted.includes(item)
-  );
-  return Number(missingValue);
+  // const findMissing = [...new Set(fullOrder)].filter(
+  //   item => !sorted.includes(item)
+  // );
+  // return Number(findMissing);
 
   //======================> либо второй вариант, более "в лоб"
 
-  // const findMissing = (where, schema) => {
-  //   let newArr = [];
-  //   for (let i = 0; i < schema.length; i += 1) {
-  //     if (where[i] === schema[i]) continue;
-  //     if (!(where[i] === schema[i])) {
-  //       newArr.push(schema[i]);
-  //     }
-  //     return newArr;
-  //   }
-  // };
-  // const missing = findMissing(sorted, fullOrder);
-  // return Number(missing);
+  const findMissing = (where, schema) => {
+    let newArr = [];
+    for (let i = 0; i < schema.length; i += 1) {
+      if (where[i] === schema[i]) continue;
+      if (!(where[i] === schema[i])) {
+        newArr.push(schema[i]);
+      }
+      return newArr;
+    }
+  };
+  const missing = findMissing(sorted, fullOrder);
+  return Number(missing);
 };
 
 const result1 = missed([0, 1, 3]);
