@@ -1,31 +1,36 @@
-// const longest = str => {
-//   const arr = str.split("");
-//   const uniqueArray = [...new Set(arr)];
-//   const uniqueString = uniqueArray.join("");
-//   return uniqueString;
-// };
+let longest = string => {
+  let current = 0;
+  let outerString = "";
+  let longestString = "";
+  let indexContainer = {};
 
-//======================== Не думаю, что такое решение Вас устроило бы, поэтому ниже расписан более подробный вариант
+  for (let i = 0; i < string.length; i++) {
+    current = string[i];
+    if (!indexContainer[string[i]]) {
+      outerString += current;
+      indexContainer[string[i]] = { index: i };
+    } else {
+      if (longestString.length <= outerString.length) {
+        longestString = outerString;
+      }
 
-const longest = str => {
-  const arr = str.split("");
+      let prevInd = indexContainer[current].index;
+      let prevString = string.substring(prevInd + 1, i);
+      outerString = prevString + current;
+      indexContainer = {};
 
-  const fn = arr => {
-    const newArr = [];
-    for (let i in arr) {
-      if (!newArr.includes(arr[i])) {
-        newArr.push(arr[i]);
+      for (let j = prevInd + 1; j <= i; j++) {
+        indexContainer[string.charAt(j)] = { index: j };
       }
     }
-    return newArr.join("");
-  };
-
-  return fn(arr);
+  }
+  if (longestString.length > outerString.length) return longestString;
+  else return outerString;
 };
 
-const result1 = longest("abcabcbb");
-const result2 = longest("ababcd");
-const result3 = longest("bbbb");
-const result4 = longest("bbbab");
+const result1 = longest("abadef"); //badef
+const result2 = longest("ababcd"); // 'abcd'
+const result3 = longest("bbbb"); // 'b'
+const result4 = longest("bbbab"); // 'ba'
 
 console.log({ result1, result2, result3, result4 });

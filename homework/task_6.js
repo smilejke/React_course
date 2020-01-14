@@ -1,5 +1,5 @@
 const missed = arr => {
-  let sorted = arr.sort((a, b) => a - b);
+  const sorted = arr.sort((a, b) => a - b);
 
   const creteFullOrder = arr => {
     let min = arr[0];
@@ -11,28 +11,14 @@ const missed = arr => {
     return newArr;
   };
 
-  let fullOrder = creteFullOrder(sorted);
-  //====================================== первый вариант
-
-  // const findMissing = [...new Set(fullOrder)].filter(
-  //   item => !sorted.includes(item)
-  // );
-  // return Number(findMissing);
-
-  //======================> либо второй вариант, более "в лоб"
-
-  const findMissing = (where, schema) => {
-    let newArr = [];
-    for (let i = 0; i < schema.length; i += 1) {
-      if (where[i] === schema[i]) continue;
-      if (!(where[i] === schema[i])) {
-        newArr.push(schema[i]);
-      }
-      return newArr;
-    }
-  };
-  const missing = findMissing(sorted, fullOrder);
-  return Number(missing);
+  const fullOrder = creteFullOrder(sorted);
+  const sumOfCurrent = sorted.reduce((a, b) => {
+    return a + b;
+  });
+  const sumOfFull = fullOrder.reduce((a, b) => {
+    return a + b;
+  });
+  return sumOfFull - sumOfCurrent;
 };
 
 const result1 = missed([0, 1, 3]);
