@@ -1,15 +1,9 @@
 const max = (arr, current) => {
-  const sortTheArray = arr => {
-    const soredArr = arr.sort((a, b) => a - b);
-    return soredArr;
-  };
-
   const sumOfElems = arr => {
-    const sum = arr.reduce((sum, cur) => sum + cur, 0);
-    return sum;
+    return arr.reduce((sum, cur) => sum + cur, 0);
   };
 
-  const sort = sortTheArray(arr);
+  const sort = arr.sort((a, b) => a - b);
   const sum = sumOfElems(sort);
 
   const howMuchWeCanBuy = (sorted, sumed) => {
@@ -19,11 +13,11 @@ const max = (arr, current) => {
     } else return newSorted.length;
 
     howMuchWeCanBuy(newSorted, sumOfElems(newSorted));
-
     return newSorted.length;
   };
 
-  return howMuchWeCanBuy(sort, sum);
+  const amount = howMuchWeCanBuy(sort, sum);
+  return amount;
 };
 
 const result1 = max([1, 2], 7);
