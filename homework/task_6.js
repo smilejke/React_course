@@ -1,24 +1,18 @@
 const missed = arr => {
-  const sorted = arr.sort((a, b) => a - b);
+  const min = Math.min(...arr);
+  const max = Math.max(...arr);
 
-  const creteFullOrder = arr => {
-    let min = arr[0];
-    let max = arr[arr.length - 1];
-    let newArr = [];
-    for (let i = min; i <= max; i++) {
-      newArr.push(i);
-    }
-    return newArr;
-  };
+  const newArr = Array.from(Array(max - min), (v, i) => {
+    return i + min;
+  });
 
-  const fullOrder = creteFullOrder(sorted);
-  const sumOfCurrent = sorted.reduce((a, b) => {
-    return a + b;
-  });
-  const sumOfFull = fullOrder.reduce((a, b) => {
-    return a + b;
-  });
-  return sumOfFull - sumOfCurrent;
+  const missing = newArr
+    .filter(i => {
+      return !arr.includes(i);
+    })
+    .join("");
+
+  return Number(missing);
 };
 
 const result1 = missed([0, 1, 3]);
