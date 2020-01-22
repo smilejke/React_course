@@ -15,7 +15,8 @@
 // ======================================> после паузы на подумать
 
 const largestN = (arr, int) => {
-  return arr.sort((a, b) => b - a)[int - 1];
+  const newArray = new Set(arr);
+  return Array.from(newArray).sort((a, b) => b - a)[int - 1];
 };
 
 const result1 = largestN([2, 4, 1, 5, 3], 1);
