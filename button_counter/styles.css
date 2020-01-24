@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+input {
+  width: 100px;
+  height: 40px;
+  margin: auto 20px;
+}
+
+.counter {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.button-row {
+  width: max-content;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin: 10px auto;
+}
