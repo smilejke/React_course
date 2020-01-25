@@ -2,15 +2,19 @@
   box-sizing: border-box;
 }
 
-input {
-  width: 100px;
-  height: 40px;
-  margin: auto 20px;
+body {
+  text-align: center;
 }
 
-.counter {
-  font-size: 2rem;
-  font-weight: bold;
+button {
+  width: 100px;
+  height: 40px;
+  margin: auto 10px;
+}
+
+.output-field {
+  font-size: 1.2rem;
+  margin: auto 0;
 }
 
 .button-row {
@@ -19,5 +23,10 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  margin: 10px auto;
+  margin: 20px auto;
+}
+
+body p {
+  font-size: 2rem;
+  font-weight: bold;
 }
