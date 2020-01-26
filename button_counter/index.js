@@ -1,5 +1,5 @@
 class Counter {
-  constructor(hash) {
+  constructor(hash = {}) {
     this.initial = hash.initial ? hash.initial : 0;
     this.incrStep = hash.incrStep ? hash.incrStep : 1;
     this.decrStep = hash.decrStep ? hash.decrStep : 1;
