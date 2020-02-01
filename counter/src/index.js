@@ -57,7 +57,7 @@ class Sum extends React.Component {
           increment={this.increment}
           decrement={this.decrement}
           options={{
-            start: this.state.start[0],
+            start: this.state.start[0] ? this.state.start[0] : 0,
             incrStep: 1,
             decrStep: 1,
             minRange: -10,
@@ -68,7 +68,7 @@ class Sum extends React.Component {
           increment={this.increment}
           decrement={this.decrement}
           options={{
-            start: this.state.start[1],
+            start: this.state.start[1] ? this.state.start[1] : 0,
             incrStep: 5,
             decrStep: 5,
             minRange: -25,
@@ -79,7 +79,7 @@ class Sum extends React.Component {
           increment={this.increment}
           decrement={this.decrement}
           options={{
-            start: this.state.start[2],
+            start: this.state.start[2] ? this.state.start[2] : 0,
             incrStep: 10,
             decrStep: 10,
             minRange: -70,
