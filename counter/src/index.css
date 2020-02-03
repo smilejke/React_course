@@ -18,7 +18,8 @@ code {
   box-sizing: border-box;
 }
 
-button {
+.plus,
+.minus {
   width: 100px;
   height: 40px;
   margin: auto 10px;
