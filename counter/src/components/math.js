@@ -42,8 +42,10 @@ class Math extends React.Component {
   }
 
   handleCounterChange(counter) {
+    let currentState = this.state.counter;
+    let currentSum = (currentState += parseInt(counter));
     this.setState({
-      counter: (this.state.counter += parseInt(counter))
+      counter: currentSum
     });
   }
 
