@@ -1,6 +1,6 @@
 import React from "react";
 import CounterVerdict from "./counerVerdict.js";
-import Button from "./button.js";
+import Button from "./renderButtonRow.js";
 
 class Math extends React.Component {
   constructor(props) {
