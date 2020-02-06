@@ -6,7 +6,6 @@ class Math extends React.Component {
   constructor(props) {
     super(props);
     this.handleCounterChange = this.handleCounterChange.bind(this);
-
     this.options = [
       {
         initial: 1,
@@ -59,7 +58,6 @@ class Math extends React.Component {
 
   render() {
     const counter = this.state.counter;
-
     return (
       <div>
         <CounterVerdict sum={counter} />
@@ -69,7 +67,7 @@ class Math extends React.Component {
   }
 
   doMath(e) {
-    let current = this.props.options.initial ? this.props.options.initial : 0;
+    let current = this.value;
     const decr = this.props.options.decrStep ? this.props.options.decrStep : -1;
     const incr = this.props.options.incrStep ? this.props.options.incrStep : 1;
     const minRange =
@@ -84,17 +82,14 @@ class Math extends React.Component {
 
     if (e.target.className === "minus") {
       if (current > minRange) {
-        this.props.options.initial = current + decr;
+        this.value = current + decr;
       } else return false;
     }
     if (e.target.className === "plus") {
       if (current < maxRange) {
-        this.props.options.initial = current + incr;
+        this.value = current + incr;
       } else return false;
     }
-    this.setState({
-      counter: this.props.options.initial
-    });
     return true;
   }
 

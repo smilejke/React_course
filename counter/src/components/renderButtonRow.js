@@ -6,11 +6,11 @@ class Button extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = { counter: props.options.initial ? props.options.initial : 0 };
+    this.value = props.options.initial ? props.options.initial : 0;
     this.action = props.options.action.bind(this);
   }
   render() {
-    const counter = this.state.counter;
+    const value = this.value;
     const decr = this.props.options.decrStep ? this.props.options.decrStep : -1;
     const incr = this.props.options.incrStep ? this.props.options.incrStep : 1;
 
@@ -19,7 +19,7 @@ class Button extends React.Component {
         <button className="minus" data-math={decr} onClick={this.handleChange}>
           decrement
         </button>
-        <CounterValue counter={counter} />
+        <CounterValue counter={value} />
         <button className="plus" data-math={incr} onClick={this.handleChange}>
           increment
         </button>
