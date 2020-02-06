@@ -49,14 +49,21 @@ class Math extends React.Component {
     });
   }
 
+  buttonList(props) {
+    const { options } = props;
+    const buttonList = options.map(n => (
+      <Button key={options.indexOf(n)} options={n} />
+    ));
+    return buttonList;
+  }
+
   render() {
     const counter = this.state.counter;
+
     return (
       <div>
         <CounterVerdict sum={counter} />
-        <Button options={this.options[0]} />
-        <Button options={this.options[1]} />
-        <Button options={this.options[2]} />
+        {this.buttonList(this)}
       </div>
     );
   }
