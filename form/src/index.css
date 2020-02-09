@@ -1,0 +1,80 @@
+.App {
+  padding: 20px;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+form {
+  border-bottom: 2px solid black;
+  padding: 10px;
+}
+.form-container {
+  width: max-content;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-container table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form-container td {
+  border: 1px solid #ccc;
+  width: 33%;
+}
+
+.form-container th {
+  width: 33%;
+}
+
+.row1 {
+  grid-row: 1/2;
+}
+
+.row1 input {
+  height: 20px;
+}
+.row2 {
+  grid-row: 2/3;
+}
+.row2 select {
+  height: 30px;
+}
+.row3 {
+  grid-row: 3/4;
+}
+.row1,
+.row2,
+.row3 {
+  text-align: center;
+}
+
+.row1,
+.row2,
+.row3,
+.row4 {
+  padding: 10px;
+}
+
+.row1 span,
+.row2 span,
+.row3 span {
+  margin-left: 10px;
+}
+
+.row4 {
+  grid-row: 4/5;
+  text-align: end;
+}
+.row4 input {
+  height: 30px;
+}
