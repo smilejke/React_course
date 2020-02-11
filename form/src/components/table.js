@@ -15,7 +15,7 @@ class Table extends React.Component {
             </tr>
             {items.map(item => {
               return (
-                <tr key={item.name + Math.random()}>
+                <tr key={item.id}>
                   <td>{item.name}</td>
                   <td>
                     <input

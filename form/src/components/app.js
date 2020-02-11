@@ -1,6 +1,7 @@
 import React from "react";
 import Table from "./table.js";
 import Form from "./form.js";
+import nanoid from "nanoid";
 import "../index.css";
 
 class App extends React.Component {
@@ -22,7 +23,8 @@ class App extends React.Component {
     items.push({
       name: this.state.name,
       contract: this.state.contract,
-      position: this.state.position
+      position: this.state.position,
+      id: nanoid()
     });
     this.setState({
       items,

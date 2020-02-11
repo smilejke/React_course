@@ -1,7 +1,19 @@
 import React from "react";
 import "../index.css";
+import nanoid from "nanoid";
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.options = [
+      { value: "JFD", text: "Junoir Front-end developer", key: nanoid() },
+      { value: "MFD", text: "Middle Front-end developer", key: nanoid() },
+      { value: "SFD", text: "Senior Front-end developer", key: nanoid() },
+      { value: "JBD", text: "Junoir Back-end developer", key: nanoid() },
+      { value: "MBD", text: "Middle Back-end developer", key: nanoid() },
+      { value: "SBD", text: "Senior Back-end developer", key: nanoid() }
+    ];
+  }
   render() {
     return (
       <form onSubmit={this.props.submit}>
@@ -31,12 +43,13 @@ class Form extends React.Component {
             value={this.props.newPosition}
             onChange={this.props.inputChange}
           >
-            <option value="JFD">Junoir Front-end developer</option>
-            <option value="MFD">Middle Front-end developer</option>
-            <option value="SFD">Senior Front-end developer</option>
-            <option value="JBD">Junoir Back-end developer</option>
-            <option value="MBD">Middle Back-end developer</option>
-            <option value="SBD">Senior Back-end developer</option>
+            {this.options.map(option => {
+              return (
+                <option key={option.key} value={option.value}>
+                  {option.text}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="row4">
