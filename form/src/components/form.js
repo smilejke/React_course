@@ -6,12 +6,12 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.options = [
-      { value: "JFD", text: "Junoir Front-end developer", key: nanoid() },
-      { value: "MFD", text: "Middle Front-end developer", key: nanoid() },
-      { value: "SFD", text: "Senior Front-end developer", key: nanoid() },
-      { value: "JBD", text: "Junoir Back-end developer", key: nanoid() },
-      { value: "MBD", text: "Middle Back-end developer", key: nanoid() },
-      { value: "SBD", text: "Senior Back-end developer", key: nanoid() }
+      { value: nanoid(), text: "Junoir Front-end developer" },
+      { value: nanoid(), text: "Middle Front-end developer" },
+      { value: nanoid(), text: "Senior Front-end developer" },
+      { value: nanoid(), text: "Junoir Back-end developer" },
+      { value: nanoid(), text: "Middle Back-end developer" },
+      { value: nanoid(), text: "Senior Back-end developer" }
     ];
   }
   render() {
@@ -45,7 +45,7 @@ class Form extends React.Component {
           >
             {this.options.map(option => {
               return (
-                <option key={option.key} value={option.value}>
+                <option key={option.value} value={option.text}>
                   {option.text}
                 </option>
               );
