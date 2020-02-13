@@ -33,6 +33,11 @@ class Form extends React.Component {
     });
     let person = this.state;
     this.props.addator(person);
+    this.setState({
+      name: "",
+      position: "",
+      contract: true
+    });
   }
 
   handleInputChange(e) {
@@ -45,6 +50,7 @@ class Form extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="row1">
@@ -62,7 +68,7 @@ class Form extends React.Component {
             type="checkbox"
             name="contract"
             onChange={this.handleInputChange}
-            defaultChecked={this.state.contract}
+            checked={this.state.contract}
           />
           <span>On Contract</span>
         </div>
