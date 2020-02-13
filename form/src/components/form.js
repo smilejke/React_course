@@ -16,8 +16,7 @@ class Form extends React.Component {
     this.state = {
       name: "",
       contract: true,
-      position: "",
-      id: nanoid()
+      position: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,14 +24,15 @@ class Form extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({
+
+    let person = {
       name: this.state.name,
       contract: this.state.contract,
       position: this.state.position,
       id: nanoid()
-    });
-    let person = this.state;
+    };
     this.props.addator(person);
+
     this.setState({
       name: "",
       position: "",
