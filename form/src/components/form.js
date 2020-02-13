@@ -13,16 +13,46 @@ class Form extends React.Component {
       { value: nanoid(), text: "Middle Back-end developer" },
       { value: nanoid(), text: "Senior Back-end developer" }
     ];
+    this.state = {
+      name: "",
+      contract: true,
+      position: "",
+      id: nanoid()
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      name: this.state.name,
+      contract: this.state.contract,
+      position: this.state.position,
+      id: nanoid()
+    });
+    let person = this.state;
+    this.props.addator(person);
+  }
+
+  handleInputChange(e) {
+    let target = e.target;
+    let name = e.target.name;
+    let value = target.type === "checkbox" ? target.checked : target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
     return (
-      <form onSubmit={this.props.submit}>
+      <form onSubmit={this.handleSubmit}>
         <div className="row1">
           <input
-            value={this.props.newName}
+            value={this.state.name}
             type="text"
             name="name"
-            onChange={this.props.inputChange}
+            onChange={this.handleInputChange}
           />
           <span>Name</span>
         </div>
@@ -31,8 +61,8 @@ class Form extends React.Component {
           <input
             type="checkbox"
             name="contract"
-            onChange={this.props.inputChange}
-            defaultChecked={this.props.newConctacted}
+            onChange={this.handleInputChange}
+            defaultChecked={this.state.contract}
           />
           <span>On Contract</span>
         </div>
@@ -40,8 +70,8 @@ class Form extends React.Component {
         <div className="row2">
           <select
             name="position"
-            value={this.props.newPosition}
-            onChange={this.props.inputChange}
+            value={this.state.position}
+            onChange={this.handleInputChange}
           >
             {this.options.map(option => {
               return (

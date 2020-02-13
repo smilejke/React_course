@@ -3,7 +3,7 @@ import "../index.css";
 import Row from "./sub/row.js";
 
 function Table(props) {
-  const items = props.items;
+  const staff = props.staff;
   return (
     <div className="form-container">
       <table>
@@ -13,8 +13,8 @@ function Table(props) {
             <th>Contract</th>
             <th>Position</th>
           </tr>
-          {items.map(item => {
-            return <Row key={item.id} options={item} />;
+          {staff.map(person => {
+            return <Row key={person.id} options={person} />;
           })}
         </tbody>
       </table>
