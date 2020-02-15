@@ -78,3 +78,7 @@ form {
 .row4 input {
   height: 30px;
 }
+
+.close {
+  cursor: pointer;
+}

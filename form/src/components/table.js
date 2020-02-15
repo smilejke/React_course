@@ -14,7 +14,9 @@ function Table(props) {
             <th>Position</th>
           </tr>
           {staff.map(person => {
-            return <Row key={person.id} options={person} />;
+            return (
+              <Row key={person.id} options={person} delete={props.delete} />
+            );
           })}
         </tbody>
       </table>

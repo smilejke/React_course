@@ -13,6 +13,11 @@ function Row(props) {
         />
       </td>
       <td>{props.options.position}</td>
+      <td>
+        <span className="close" id={props.options.id} onClick={props.delete}>
+          &#10006;
+        </span>
+      </td>
     </tr>
   );
 }

@@ -10,6 +10,7 @@ class App extends React.Component {
       staff: []
     };
     this.employeePusher = this.employeePusher.bind(this);
+    this.deleteRow = this.deleteRow.bind(this);
   }
 
   employeePusher(person) {
@@ -18,11 +19,30 @@ class App extends React.Component {
     this.setState({ staff: staff });
   }
 
+  deleteRow(e) {
+    let staff = [...this.state.staff];
+    const target = e.target;
+    const id = target.id;
+
+    staff.splice(
+      staff.indexOf(
+        staff.find(person => {
+          return person.id === id;
+        })
+      ),
+      1
+    );
+
+    this.setState({
+      staff: staff
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Form addator={this.employeePusher} />
-        <Table staff={this.state.staff} />
+        <Table staff={this.state.staff} delete={this.deleteRow} />
       </div>
     );
   }
