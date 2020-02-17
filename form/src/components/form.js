@@ -13,30 +13,53 @@ class Form extends React.Component {
       { value: nanoid(), text: "Middle Back-end developer" },
       { value: nanoid(), text: "Senior Back-end developer" }
     ];
+
+    let { name, contract, position, id } = this.props.editable;
+
     this.state = {
-      name: "",
-      contract: true,
-      position: ""
+      name: name ? name : "",
+      contract: contract ? contract : true,
+      position: position ? position : "",
+      id: id ? id : ""
     };
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.editable.id === prevProps.editable.id) {
+      return null;
+    } else {
+      let { name, contract, position, id } = this.props.editable;
+      this.setState({
+        name: name,
+        contract: contract,
+        position: position,
+        id: id
+      });
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    let person = {
-      name: this.state.name,
-      contract: this.state.contract,
-      position: this.state.position,
+    let { name, contract, position } = this.state;
+
+    const person = {
+      name: name,
+      contract: contract,
+      position: position,
       id: nanoid()
     };
-    this.props.addator(person);
+
+    this.props.saveWorker(person);
 
     this.setState({
       name: "",
+      contract: true,
       position: "",
-      contract: true
+      id: ""
     });
   }
 
@@ -44,17 +67,20 @@ class Form extends React.Component {
     let target = e.target;
     let name = e.target.name;
     let value = target.type === "checkbox" ? target.checked : target.value;
+
     this.setState({
       [name]: value
     });
   }
 
   render() {
+    let { name, contract, position } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="row1">
           <input
-            value={this.state.name}
+            value={name}
             type="text"
             name="name"
             onChange={this.handleInputChange}
@@ -67,7 +93,7 @@ class Form extends React.Component {
             type="checkbox"
             name="contract"
             onChange={this.handleInputChange}
-            checked={this.state.contract}
+            checked={contract}
           />
           <span>On Contract</span>
         </div>
@@ -75,7 +101,7 @@ class Form extends React.Component {
         <div className="row2">
           <select
             name="position"
-            value={this.state.position}
+            value={position}
             onChange={this.handleInputChange}
           >
             {this.options.map(option => {
@@ -88,7 +114,7 @@ class Form extends React.Component {
           </select>
         </div>
         <div className="row4">
-          <input type="submit" value="Add employee" />
+          <input type="submit" value={this.props.buttonName()} />
         </div>
       </form>
     );

@@ -1,8 +1,7 @@
 .App {
   padding: 20px;
-  /* border: 1px solid #ccc; */
   border-radius: 4px;
-  width: 400px;
+  width: 50%;
   margin: 20px auto;
   text-align: center;
 }
@@ -29,11 +28,22 @@ form {
 
 .form-container td {
   border: 1px solid #ccc;
-  width: 33%;
+  padding: 0 7px;
 }
 
-.form-container th {
-  width: 33%;
+.close,
+.edit {
+  cursor: pointer;
+}
+
+.small-th {
+  width: 6%;
+}
+.name-th {
+  width: 30%;
+}
+.pos-th {
+  width: 52%;
 }
 
 .row1 {
@@ -77,8 +87,4 @@ form {
 }
 .row4 input {
   height: 30px;
-}
-
-.close {
-  cursor: pointer;
 }

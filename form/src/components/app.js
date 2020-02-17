@@ -7,22 +7,71 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      staff: []
+      staff: [],
+      editor: {},
+      editorMode: false
     };
+
     this.employeePusher = this.employeePusher.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
+    this.editRow = this.editRow.bind(this);
+    this.buttonValueChange = this.buttonValueChange.bind(this);
   }
 
   employeePusher(person) {
     let staff = [...this.state.staff];
-    staff.push(person);
-    this.setState({ staff: staff });
+
+    if (!this.state.editorMode) {
+      staff.push(person);
+      this.setState({
+        staff: staff
+      });
+    } else {
+      const searchIndexToChange = staff.indexOf(
+        staff.find(worker => {
+          return worker.id === this.state.editor.id;
+        })
+      );
+
+      staff[searchIndexToChange] = {
+        name: person.name,
+        contract: person.contract,
+        position: person.position,
+        id: this.state.editor.id
+      };
+
+      this.setState({
+        staff: staff,
+        editorMode: false
+      });
+    }
+  }
+
+  buttonValueChange() {
+    if (this.state.editorMode) {
+      return "Accept changes";
+    } else return "Add employee";
+  }
+
+  editRow(e) {
+    let staff = [...this.state.staff];
+    const target = e.target;
+    const id = target.getAttribute("data-id");
+
+    const targetPerson = staff.find(person => {
+      return person.id === id;
+    });
+
+    this.setState({
+      editor: targetPerson,
+      editorMode: true
+    });
   }
 
   deleteRow(e) {
     let staff = [...this.state.staff];
     const target = e.target;
-    const id = target.id;
+    const id = target.getAttribute("data-id");
 
     staff.splice(
       staff.indexOf(
@@ -32,7 +81,6 @@ class App extends React.Component {
       ),
       1
     );
-
     this.setState({
       staff: staff
     });
@@ -41,8 +89,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Form addator={this.employeePusher} />
-        <Table staff={this.state.staff} delete={this.deleteRow} />
+        <Form
+          saveWorker={this.employeePusher}
+          editable={this.state.editor}
+          buttonName={this.buttonValueChange}
+        />
+
+        <Table
+          staff={this.state.staff}
+          del={this.deleteRow}
+          edit={this.editRow}
+        />
       </div>
     );
   }

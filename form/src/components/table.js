@@ -4,18 +4,21 @@ import Row from "./sub/row.js";
 
 function Table(props) {
   const staff = props.staff;
+  const { del, edit } = props;
   return (
     <div className="form-container">
       <table>
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Contract</th>
-            <th>Position</th>
+            <th className="name-th">Name</th>
+            <th className="small-th">Contract</th>
+            <th className="pos-th">Position</th>
+            <th className="small-th">Del</th>
+            <th className="small-th">Edit</th>
           </tr>
           {staff.map(person => {
             return (
-              <Row key={person.id} options={person} delete={props.delete} />
+              <Row key={person.id} options={person} del={del} edit={edit} />
             );
           })}
         </tbody>
