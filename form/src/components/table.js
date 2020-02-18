@@ -4,7 +4,8 @@ import Row from "./sub/row.js";
 
 function Table(props) {
   const staff = props.staff;
-  const { del, edit } = props;
+  const actions = props.actions;
+
   return (
     <div className="form-container">
       <table>
@@ -17,9 +18,7 @@ function Table(props) {
             <th className="small-th">Edit</th>
           </tr>
           {staff.map(person => {
-            return (
-              <Row key={person.id} options={person} del={del} edit={edit} />
-            );
+            return <Row key={person.id} options={person} actions={actions} />;
           })}
         </tbody>
       </table>

@@ -4,8 +4,7 @@ import "../../index.css";
 function Row(props) {
   const {
     options: { name, contract, position, id },
-    del,
-    edit
+    actions: { del, edit }
   } = props;
 
   return (

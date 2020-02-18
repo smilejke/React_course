@@ -16,6 +16,7 @@ class App extends React.Component {
     this.deleteRow = this.deleteRow.bind(this);
     this.editRow = this.editRow.bind(this);
     this.buttonValueChange = this.buttonValueChange.bind(this);
+    this.searcher = this.searcher.bind(this);
   }
 
   employeePusher(person) {
@@ -28,9 +29,7 @@ class App extends React.Component {
       });
     } else {
       const searchIndexToChange = staff.indexOf(
-        staff.find(worker => {
-          return worker.id === this.state.editor.id;
-        })
+        this.searcher(staff, this.state.editor.id)
       );
 
       staff[searchIndexToChange] = {
@@ -47,6 +46,12 @@ class App extends React.Component {
     }
   }
 
+  searcher(container, identificator) {
+    return container.find(item => {
+      return item.id === identificator;
+    });
+  }
+
   buttonValueChange() {
     if (this.state.editorMode) {
       return "Accept changes";
@@ -58,9 +63,7 @@ class App extends React.Component {
     const target = e.target;
     const id = target.getAttribute("data-id");
 
-    const targetPerson = staff.find(person => {
-      return person.id === id;
-    });
+    const targetPerson = this.searcher(staff, id);
 
     this.setState({
       editor: targetPerson,
@@ -73,20 +76,18 @@ class App extends React.Component {
     const target = e.target;
     const id = target.getAttribute("data-id");
 
-    staff.splice(
-      staff.indexOf(
-        staff.find(person => {
-          return person.id === id;
-        })
-      ),
-      1
-    );
+    staff.splice(staff.indexOf(this.searcher(staff, id)), 1);
     this.setState({
       staff: staff
     });
   }
 
   render() {
+    const tableMethods = {
+      del: this.deleteRow,
+      edit: this.editRow
+    };
+
     return (
       <div className="App">
         <Form
@@ -95,11 +96,7 @@ class App extends React.Component {
           buttonName={this.buttonValueChange}
         />
 
-        <Table
-          staff={this.state.staff}
-          del={this.deleteRow}
-          edit={this.editRow}
-        />
+        <Table staff={this.state.staff} actions={tableMethods} />
       </div>
     );
   }
