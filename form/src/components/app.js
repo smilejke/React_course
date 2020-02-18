@@ -87,15 +87,14 @@ class App extends React.Component {
       del: this.deleteRow,
       edit: this.editRow
     };
+    const formMethods = {
+      addWorker: this.employeePusher,
+      buttonName: this.buttonValueChange
+    };
 
     return (
       <div className="App">
-        <Form
-          saveWorker={this.employeePusher}
-          editable={this.state.editor}
-          buttonName={this.buttonValueChange}
-        />
-
+        <Form actions={formMethods} editable={this.state.editor} />
         <Table staff={this.state.staff} actions={tableMethods} />
       </div>
     );

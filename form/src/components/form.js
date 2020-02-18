@@ -43,7 +43,7 @@ class Form extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
+    const addWorker = this.props.actions.addWorker;
     let { name, contract, position } = this.state;
 
     const person = {
@@ -53,7 +53,7 @@ class Form extends React.Component {
       id: nanoid()
     };
 
-    this.props.saveWorker(person);
+    addWorker(person);
 
     this.setState({
       name: "",
@@ -75,6 +75,7 @@ class Form extends React.Component {
 
   render() {
     let { name, contract, position } = this.state;
+    const changeName = this.props.actions.buttonName();
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -114,7 +115,7 @@ class Form extends React.Component {
           </select>
         </div>
         <div className="row4">
-          <input type="submit" value={this.props.buttonName()} />
+          <input type="submit" value={changeName} />
         </div>
       </form>
     );
