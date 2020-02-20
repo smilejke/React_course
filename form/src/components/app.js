@@ -1,8 +1,6 @@
 import React from "react";
 import Table from "./table.js";
 import WrappedHorizontalLoginForm from "./form.js";
-import categories from "../global/categories.js";
-import staff from "../global/staff.js";
 
 import "../index.css";
 
@@ -10,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      staff: staff,
+      staff: this.props.global.workers,
       editor: {},
       editorMode: false
     };
@@ -93,7 +91,9 @@ class App extends React.Component {
       addWorker: this.employeePusher,
       buttonName: this.buttonValueChange
     };
-    const options = categories;
+
+    const options = this.props.global.positions;
+
     return (
       <div className="App">
         {
