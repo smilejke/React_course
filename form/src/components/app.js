@@ -1,13 +1,16 @@
 import React from "react";
 import Table from "./table.js";
-import Form from "./form.js";
+import WrappedHorizontalLoginForm from "./form.js";
+import categories from "../global/categories.js";
+import staff from "../global/staff.js";
+
 import "../index.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      staff: [],
+      staff: staff,
       editor: {},
       editorMode: false
     };
@@ -53,14 +56,12 @@ class App extends React.Component {
   }
 
   buttonValueChange() {
-    if (this.state.editorMode) {
-      return "Accept changes";
-    } else return "Add employee";
+    return this.state.editorMode ? "Accept changes" : "Add Employee";
   }
 
   editRow(e) {
     let staff = [...this.state.staff];
-    const target = e.target;
+    const target = e.currentTarget;
     const id = target.getAttribute("data-id");
 
     const targetPerson = this.searcher(staff, id);
@@ -73,10 +74,11 @@ class App extends React.Component {
 
   deleteRow(e) {
     let staff = [...this.state.staff];
-    const target = e.target;
+    const target = e.currentTarget;
     const id = target.getAttribute("data-id");
 
     staff.splice(staff.indexOf(this.searcher(staff, id)), 1);
+
     this.setState({
       staff: staff
     });
@@ -91,10 +93,16 @@ class App extends React.Component {
       addWorker: this.employeePusher,
       buttonName: this.buttonValueChange
     };
-
+    const options = categories;
     return (
       <div className="App">
-        <Form actions={formMethods} editable={this.state.editor} />
+        {
+          <WrappedHorizontalLoginForm
+            actions={formMethods}
+            editable={this.state.editor}
+            categories={options}
+          />
+        }
         <Table staff={this.state.staff} actions={tableMethods} />
       </div>
     );

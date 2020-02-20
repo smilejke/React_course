@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css";
-import Row from "./sub/row.js";
+import Row from "./TableRow/row";
 
 function Table(props) {
   const staff = props.staff;
@@ -9,7 +9,7 @@ function Table(props) {
   return (
     <div className="form-container">
       <table>
-        <tbody>
+        <thead>
           <tr>
             <th className="name-th">Name</th>
             <th className="small-th">Contract</th>
@@ -17,6 +17,8 @@ function Table(props) {
             <th className="small-th">Del</th>
             <th className="small-th">Edit</th>
           </tr>
+        </thead>
+        <tbody>
           {staff.map(person => {
             return <Row key={person.id} options={person} actions={actions} />;
           })}

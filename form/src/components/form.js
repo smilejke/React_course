@@ -1,19 +1,11 @@
 import React from "react";
 import "../index.css";
 import nanoid from "nanoid";
+import { Button, Input, Checkbox, Form, Icon } from "antd";
 
-class Form extends React.Component {
+class HorizontalLoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.options = [
-      { value: nanoid(), text: "Junoir Front-end developer" },
-      { value: nanoid(), text: "Middle Front-end developer" },
-      { value: nanoid(), text: "Senior Front-end developer" },
-      { value: nanoid(), text: "Junoir Back-end developer" },
-      { value: nanoid(), text: "Middle Back-end developer" },
-      { value: nanoid(), text: "Senior Back-end developer" }
-    ];
-
     let { name, contract, position, id } = this.props.editable;
 
     this.state = {
@@ -22,7 +14,6 @@ class Form extends React.Component {
       position: position ? position : "",
       id: id ? id : ""
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -75,51 +66,60 @@ class Form extends React.Component {
 
   render() {
     let { name, contract, position } = this.state;
+    const options = this.props.categories;
     const changeName = this.props.actions.buttonName();
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form
+        layout="inline"
+        onSubmit={this.handleSubmit}
+        className="form-container"
+      >
         <div className="row1">
-          <input
-            value={name}
-            type="text"
-            name="name"
-            onChange={this.handleInputChange}
-          />
-          <span>Name</span>
+          <Form.Item>
+            <Input
+              size="large"
+              placeholder="Worker's name"
+              value={name}
+              type="text"
+              name="name"
+              onChange={this.handleInputChange}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Checkbox
+              name="contract"
+              onChange={this.handleInputChange}
+              checked={contract}
+            >
+              <span className="checkbox-descr">On Contract</span>
+            </Checkbox>
+          </Form.Item>
+          <Form.Item>
+            <select
+              name="position"
+              value={position}
+              onChange={this.handleInputChange}
+            >
+              {options.map(option => {
+                return <option key={option.value}>{option.text}</option>;
+              })}
+            </select>
+          </Form.Item>
         </div>
-
-        <div className="row3">
-          <input
-            type="checkbox"
-            name="contract"
-            onChange={this.handleInputChange}
-            checked={contract}
-          />
-          <span>On Contract</span>
-        </div>
-
         <div className="row2">
-          <select
-            name="position"
-            value={position}
-            onChange={this.handleInputChange}
-          >
-            {this.options.map(option => {
-              return (
-                <option key={option.value} value={option.text}>
-                  {option.text}
-                </option>
-              );
-            })}
-          </select>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="submit">
+              {changeName}
+            </Button>
+          </Form.Item>
         </div>
-        <div className="row4">
-          <input type="submit" value={changeName} />
-        </div>
-      </form>
+      </Form>
     );
   }
 }
-
-export default Form;
+const WrappedHorizontalLoginForm = Form.create({ name: "horizontal_login" })(
+  HorizontalLoginForm
+);
+export default WrappedHorizontalLoginForm;
