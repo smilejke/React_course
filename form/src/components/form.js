@@ -97,7 +97,7 @@ class HorizontalLoginForm extends React.Component {
             <Checkbox
               name="contract"
               onChange={this.handleInputChange}
-              checked={isJunior ? !contract : contract}
+              checked={isJunior ? false : contract}
               disabled={isJunior}
             >
               <span className="checkbox-descr">On Contract</span>
