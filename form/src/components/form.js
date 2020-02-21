@@ -19,10 +19,11 @@ class HorizontalLoginForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    let { name, contract, position, id } = this.props.editable;
+
     if (this.props.editable.id === prevProps.editable.id) {
       return null;
     } else {
-      let { name, contract, position, id } = this.props.editable;
       this.setState({
         name: name,
         contract: contract,
@@ -64,10 +65,15 @@ class HorizontalLoginForm extends React.Component {
     });
   }
 
+  isJunior() {}
+
   render() {
     let { name, contract, position } = this.state;
     const options = this.props.categories;
     const changeName = this.props.actions.buttonName();
+    const isJunior =
+      this.state.position === "Junior Back-end developer" ||
+      this.state.position === "Junior Front-end developer";
 
     return (
       <Form
@@ -91,7 +97,8 @@ class HorizontalLoginForm extends React.Component {
             <Checkbox
               name="contract"
               onChange={this.handleInputChange}
-              checked={contract}
+              checked={isJunior ? !contract : contract}
+              disabled={isJunior}
             >
               <span className="checkbox-descr">On Contract</span>
             </Checkbox>
