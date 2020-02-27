@@ -1,7 +1,8 @@
 import React from "react";
 import "../index.css";
 import nanoid from "nanoid";
-import { Button, Input, Checkbox, Form, Icon } from "antd";
+import { Button, Input, Checkbox, Form, Icon, Select } from "antd";
+const { Option } = Select;
 
 class HorizontalLoginForm extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class HorizontalLoginForm extends React.Component {
     this.validateName = this.validateName.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -86,9 +88,15 @@ class HorizontalLoginForm extends React.Component {
       });
     }
   }
+  handleSelectChange(value) {
+    this.setState({
+      position: value,
+      nameValidation: false
+    });
+  }
 
   render() {
-    let { name, contract, position } = this.state;
+    let { name, contract } = this.state;
     const options = this.props.categories;
     const changeName = this.props.actions.buttonName();
     const isJunior =
@@ -122,6 +130,27 @@ class HorizontalLoginForm extends React.Component {
               This field is necessary
             </span>
           </Form.Item>
+
+          <Form.Item>
+            <div>
+              <Select
+                defaultValue="Choose workers position"
+                size="large"
+                onChange={this.handleSelectChange}
+                style={{ width: 250 }}
+              >
+                {options.map(option => {
+                  return (
+                    <Option key={option.value} value={option.text}>
+                      {option.text}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </div>
+          </Form.Item>
+        </div>
+        <div className="row2">
           <Form.Item>
             <Checkbox
               name="contract"
@@ -132,19 +161,6 @@ class HorizontalLoginForm extends React.Component {
               <span className="checkbox-descr">On Contract</span>
             </Checkbox>
           </Form.Item>
-          <Form.Item>
-            <select
-              name="position"
-              value={position}
-              onChange={this.handleInputChange}
-            >
-              {options.map(option => {
-                return <option key={option.value}>{option.text}</option>;
-              })}
-            </select>
-          </Form.Item>
-        </div>
-        <div className="row2">
           <Form.Item>
             <Button type="primary" htmlType="submit" className="submit">
               {changeName}
