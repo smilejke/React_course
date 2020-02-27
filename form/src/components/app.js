@@ -101,6 +101,7 @@ class App extends React.Component {
             actions={formMethods}
             editable={this.state.editor}
             categories={options}
+            validation={this.validation}
           />
         }
         <Table staff={this.state.staff} actions={tableMethods} />

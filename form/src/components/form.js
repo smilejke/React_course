@@ -10,10 +10,12 @@ class HorizontalLoginForm extends React.Component {
 
     this.state = {
       name: name ? name : "",
-      contract: contract ? contract : true,
+      contract: contract ? contract : false,
       position: position ? position : "",
-      id: id ? id : ""
+      id: id ? id : "",
+      nameValidation: false
     };
+    this.validateName = this.validateName.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -38,21 +40,34 @@ class HorizontalLoginForm extends React.Component {
     const addWorker = this.props.actions.addWorker;
     let { name, contract, position } = this.state;
 
-    const person = {
-      name: name,
-      contract: contract,
-      position: position,
-      id: nanoid()
-    };
+    if (this.validateName()) {
+      const person = {
+        name: name,
+        contract: contract,
+        position: position,
+        id: nanoid()
+      };
 
-    addWorker(person);
+      addWorker(person);
 
-    this.setState({
-      name: "",
-      contract: true,
-      position: "",
-      id: ""
-    });
+      this.setState({
+        name: "",
+        contract: true,
+        position: "",
+        id: ""
+      });
+    }
+  }
+
+  validateName() {
+    if (this.state.name === "") {
+      this.setState({
+        nameValidation: true
+      });
+      return false;
+    } else {
+      return true;
+    }
   }
 
   handleInputChange(e) {
@@ -60,12 +75,17 @@ class HorizontalLoginForm extends React.Component {
     let name = e.target.name;
     let value = target.type === "checkbox" ? target.checked : target.value;
 
-    this.setState({
-      [name]: value
-    });
+    if (this.state.name !== "") {
+      this.setState({
+        [name]: value,
+        nameValidation: false
+      });
+    } else {
+      this.setState({
+        [name]: value
+      });
+    }
   }
-
-  isJunior() {}
 
   render() {
     let { name, contract, position } = this.state;
@@ -92,6 +112,15 @@ class HorizontalLoginForm extends React.Component {
               onChange={this.handleInputChange}
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
+            <span
+              className={
+                this.state.nameValidation
+                  ? "validation-field show"
+                  : "validation-field hidden"
+              }
+            >
+              This field is necessary
+            </span>
           </Form.Item>
           <Form.Item>
             <Checkbox

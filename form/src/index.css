@@ -79,3 +79,18 @@ select {
   height: 5vh;
   border-radius: 3px;
 }
+
+.validation-field {
+  position: absolute;
+  top: 30px;
+  right: 55px;
+  color: red;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+.hidden {
+  opacity: 0;
+}
+.show {
+  opacity: 1;
+}

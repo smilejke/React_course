@@ -4,7 +4,7 @@ const staff = [
   {
     name: "John",
     contract: true,
-    position: "Junior Front-end developer",
+    position: "Middle Front-end developer",
     id: nanoid()
   },
   {
@@ -16,7 +16,7 @@ const staff = [
   {
     name: "Edward",
     contract: true,
-    position: "Junior Front-end developer",
+    position: "Senior Front-end developer",
     id: nanoid()
   },
   {
